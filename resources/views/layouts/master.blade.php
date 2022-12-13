@@ -20,7 +20,7 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <a class="nav-link {{ Route::is('books.index') ? 'active' : '' }}"
-                    href="{{ route('books.index') }}">List Books<span class="sr-only">(current)</span></a>
+                    href="{{ route('books.index') }}">Books List<span class="sr-only">(current)</span></a>
             </div>
         </div>
     </nav>
