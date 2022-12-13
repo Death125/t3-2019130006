@@ -17,8 +17,8 @@ class CreateBooksTable extends Migration
             $table->char('id', 13)->primary();
             $table->string('judul', 255);
             $table->integer('halaman', false);
-            $table->string('kategori', 20);
-            $table->string('penerbit', 20);
+            $table->string('kategori', 255);
+            $table->string('penerbit', 255);
             $table->timestamps();
         });
     }

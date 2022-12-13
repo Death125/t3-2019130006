@@ -18,6 +18,12 @@
 @endpush
 
 @section('content')
+    @if (session()->has('success'))
+        <div class="alert alert-success" role="alert">
+            {{ session()->get('success') }}
+        </div>
+    @endif
+
     <div class="table-responsive">
         <div class="table-wrapper">
             <div class="table-title">
@@ -25,8 +31,15 @@
                     <div class="col-sm-6">
                         <h2>Books List</h2>
                     </div>
+                    <div class="col-sm-6">
+                        <a href="{{ route('books.create') }}" class="btn btn-success">
+                            <i class="fa fa-plus fa-fw" aria-hidden="true"></i>
+                            <span>Add New Book</span>
+                        </a>
+                    </div>
                 </div>
             </div>
+
 
             <table class="table table-striped table-success table-hover">
                 <thead>
@@ -43,7 +56,10 @@
                     @forelse ($books as $book)
                         <tr>
                             <th scope="row">{{ $loop->iteration }}</th>
-                            <td>{{ $book->id }}</td>
+                            <td><a class="text" href="{{ route('books.show', $book->id) }}">
+                                    {{ $book->id }}
+                                </a>
+                            </td>
                             <td>{{ $book->judul }}</td>
                             <td>{{ $book->halaman }}</td>
                             <td>{{ $book->kategori }}</td>

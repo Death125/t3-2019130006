@@ -37,16 +37,17 @@ class BookController extends Controller
     public function store(Request $request)
     {
         $validateData = $request->validate([
-            'id' => 'required|max:13',
+            'id' => 'required|unique:books,id|max:13',
             'judul' => 'required|max:255',
-            'halaman' => 'required|integer|min:10|max:9999',
-            'kategori' => 'required|max:20',
-            'penerbit' => 'required|max:20'
+            'halaman' => 'required|integer|min:10|max:999',
+            'kategori' => 'required|max:255',
+            'penerbit' => 'required|max:255'
         ]);
 
         Book::create($validateData);
 
-        return "<h1>Data Berhasil Ditambahkan</h1>";
+        $request->session()->flash('success', "Successfully adding {$validateData['judul']}!");
+        return redirect()->route('books.index');
     }
 
     /**
@@ -57,7 +58,7 @@ class BookController extends Controller
      */
     public function show(Book $book)
     {
-        dump($book);
+        return view('books.show', compact('book'));
     }
 
     /**
@@ -68,7 +69,8 @@ class BookController extends Controller
      */
     public function edit(Book $book)
     {
-        //
+        //Memunculkan form edit data
+        return view('books.edit', compact('book'));
     }
 
     /**
@@ -80,7 +82,19 @@ class BookController extends Controller
      */
     public function update(Request $request, Book $book)
     {
-        //
+        $validateData = $request->validate([
+            'id' => 'required|max:13',
+            'judul' => 'required|max:255',
+            'halaman' => 'required|integer|min:10|max:999',
+            'kategori' => 'required|max:255',
+            'penerbit' => 'required|max:255'
+        ]);
+
+        $book->update($validateData);
+
+        $request->session()
+            ->flash('success', "Successfully updating {$validateData['judul']}!");
+        return redirect()->route('books.index');
     }
 
     /**
