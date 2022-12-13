@@ -42,7 +42,7 @@
 
             <div class="row">
                 <div class="col-md-12 mb-3">
-                    <label for="halaman">kategori</label>
+                    <label for="kategori">kategori</label>
                     <input type="text" class="form-control @error('kategori') is-invalid @enderror" name="kategori"
                         id="kategori" value="{{ old('kategori') }}">
                     @error('kategori')
@@ -54,10 +54,22 @@
 
             <div class="row">
                 <div class="col-md-12 mb-3">
-                    <label for="halaman">Penerbit</label>
+                    <label for="kategori">Penerbit</label>
                     <input type="text" class="form-control @error('penerbit') is-invalid @enderror" name="penerbit"
                         id="penerbit" value="{{ old('penerbit') }}">
                     @error('penerbit')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-12 mb-3">
+                    <label for="author_id">Author ID</label>
+                    <input type="text" class="form-control @error('author_id') is-invalid @enderror" name="author_id"
+                        id="author_id" value="{{ old('author_id') }}">
+                    @error('author_id')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>

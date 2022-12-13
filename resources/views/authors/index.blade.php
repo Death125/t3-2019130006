@@ -41,20 +41,20 @@
             </div>
 
 
-            <table class="table table-striped table-success table-hover">
+            <table style="table-layout: fixed;width: 100%" class="table table-striped table-success table-hover">
                 <thead>
                     <tr>
                         <th>#</th>
                         <th>Id</th>
-                        <th>Judul</th>
-                        <th>Halaman</th>
-                        <th>Kategori</th>
-                        <th>Penerbit</th>
-                        <th>Books</th>
+                        <th>Nama</th>
+                        <th>Umur</th>
+                        <th>Kota</th>
+                        <th>Negara</th>
+                        <th style="width: 40%; word-wrap: break-word">Books</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($authors as $author)
+                    @forelse ($allAuthors as $author)
                         <tr>
                             <th scope="row">{{ $loop->iteration }}</th>
                             <td><a class="text" href="{{ route('authors.show', $author->id) }}">
@@ -65,7 +65,24 @@
                             <td>{{ $author->umur }}</td>
                             <td>{{ $author->kota }}</td>
                             <td>{{ $author->negara }}</td>
-                            <td>{{ $author->books }}</td>
+                            <td>
+                                <ul>
+                                    @if ($author->books_count > 0)
+                                        <p>Total Books : {{ $author->books_count }}</p>
+                                    @else
+                                        <p>Author tidak memiliki buku</p>
+                                    @endif
+
+
+
+                                    @foreach ($author->books as $book)
+                                        @if ($book->halaman > 10)
+                                            <li>{{ $book->judul }}</li>
+                                        @endif
+                                    @endforeach
+
+                                </ul>
+                            </td>
                         </tr>
                     @empty
                         <tr>
