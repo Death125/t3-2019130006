@@ -22,8 +22,12 @@
                 </div>
             </div>
         </div>
-
         <hr>
+
+        <p class="lead">Kota : {{ $author->kota }}</p>
+        <p class="lead">Negara : {{ $author->negara }}</p>
+        <p class="lead">Umur : {{ $author->umur }}</p>
+
         <h5>
             <span class="badge badge-primary">
                 <i class="fa fa-star fa-fw"></i>
@@ -36,31 +40,20 @@
                 @endforelse
             </span>
         </h5>
-        <p>
-        <ul class="list-inline">
-            <li class="list-inline-item">
-                <i class="fa fa-th-large fa-fw"></i>
-                <em>Umur : {{ $author->umur }}</em>
-                <br>
-                <p class="lead">Kota : {{ $author->kota }}</p>
-                <p class="lead">Negara : {{ $author->negara }}</p>
-            </li>
-        </ul>
-        </p>
+
 
         <ul>
-            <li>
-                @forelse ($allAuthors as $authors)
-                    @if ($authors->id == $author->id)
-                        @foreach ($author->books as $book)
-                            @if ($book->halaman > 10)
-            <li>{{ $book->judul }}</li>
-            @endif
-            @endforeach
-            @endif
-        @empty
+            @forelse ($allAuthors as $authors)
+                @if ($authors->id == $author->id)
+                    @foreach ($author->books as $book)
+                        @if ($book->halaman > 10)
+                            <li>{{ $book->judul }}</li>
+                        @else
+                        @endif
+                    @endforeach
+                @endif
+            @empty
             @endforelse
-            </li>
         </ul>
     </div>
 

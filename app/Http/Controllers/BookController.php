@@ -86,7 +86,8 @@ class BookController extends Controller
             'judul' => 'required|max:255',
             'halaman' => 'required|integer|min:10|max:999',
             'kategori' => 'required|max:255',
-            'penerbit' => 'required|max:255'
+            'penerbit' => 'required|max:255',
+            'author_id' => 'required',
         ]);
 
         $book->update($validateData);

@@ -66,13 +66,13 @@
                             <td>{{ $author->kota }}</td>
                             <td>{{ $author->negara }}</td>
                             <td>
-                                <ul>
-                                    @if ($author->books_count > 0)
-                                        <p>Total Books : {{ $author->books_count }}</p>
-                                    @else
-                                        <p>Author tidak memiliki buku</p>
-                                    @endif
+                                @if ($author->books_count > 0)
+                                    <p>Total Books : {{ $author->books_count }}</p>
+                                @else
+                                    <p>Author tidak memiliki buku</p>
+                                @endif
 
+                                <ul>
                                     @foreach ($author->books as $book)
                                         @if ($book->halaman > 10)
                                             <li>{{ $book->judul }}</li>
