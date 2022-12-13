@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Author;
 use App\Models\Book;
+use Illuminate\support\facades\DB;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
@@ -25,7 +27,8 @@ class BookController extends Controller
      */
     public function create()
     {
-        return view('books.create');
+        $author = Author::all();
+        return view('books.create', compact('author'));
     }
 
     /**
@@ -41,7 +44,8 @@ class BookController extends Controller
             'judul' => 'required|max:255',
             'halaman' => 'required|integer|min:10|max:999',
             'kategori' => 'required|max:255',
-            'penerbit' => 'required|max:255'
+            'penerbit' => 'required|max:255',
+            'author_id' => 'required',
         ]);
 
         Book::create($validateData);
@@ -69,7 +73,8 @@ class BookController extends Controller
      */
     public function edit(Book $book)
     {
-        return view('books.edit', compact('book'));
+        $author = Author::all();
+        return view('books.edit', compact('book', 'author'));
     }
 
     /**

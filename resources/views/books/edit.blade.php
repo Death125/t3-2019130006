@@ -1,5 +1,13 @@
 @extends('layouts.master')
 @section('title', 'Edit Book')
+@push('css_after')
+    <style>
+        #dropdown-Size {
+            width: 100%;
+            height: 50px;
+        }
+    </style>
+@endpush
 
 @section('content')
     <form action="{{ route('books.update', ['book' => $book->id]) }}" method="POST">
@@ -60,6 +68,26 @@
                     <input type="text" class="form-control @error('penerbit') is-invalid @enderror" name="penerbit"
                         id="penerbit" value="{{ old('penerbit') ?? $book->penerbit }}">
                     @error('penerbit')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 mb-3">
+                    <select name="author_id" id="dropdown-Size">
+                        <option disabled selected>Pilih Author Id</option>
+
+                        @forelse ($author as $authors)
+                            <option value="{{ old($authors->id) ?? $authors->id }}">
+                                {{ $authors->id }}
+                            </option>
+                        @empty
+                        @endforelse
+
+                    </select>
+
+                    @error('author_id')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>

@@ -1,6 +1,13 @@
 @extends('layouts.master')
 @section('title', 'Add New Book')
-
+@push('css_after')
+    <style>
+        #dropdown-Size {
+            width: 100%;
+            height: 50px;
+        }
+    </style>
+@endpush
 @section('content')
     <form action="{{ route('books.store') }}" method="POST">
         @csrf
@@ -66,9 +73,18 @@
 
             <div class="row">
                 <div class="col-md-12 mb-3">
-                    <label for="author_id">Author ID</label>
-                    <input type="text" class="form-control @error('author_id') is-invalid @enderror" name="author_id"
-                        id="author_id" value="{{ old('author_id') }}">
+                    <select name="author_id" id="dropdown-Size">
+                        <option disabled selected>Pilih Author Id</option>
+
+                        @forelse ($author as $authors)
+                            <option value="{{ old($authors->id) }}">
+                                {{ $authors->id }}
+                            </option>
+                        @empty
+                        @endforelse
+
+                    </select>
+
                     @error('author_id')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
