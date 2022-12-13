@@ -19,6 +19,7 @@ class CreateBooksTable extends Migration
             $table->integer('halaman', false);
             $table->string('kategori', 255);
             $table->string('penerbit', 255);
+            $table->char('author_id', 13)->nullable();
             $table->foreign('author_id')->references('id')->on('authors')->onDelete('cascade');
             $table->timestamps();
         });

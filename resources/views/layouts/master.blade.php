@@ -21,6 +21,8 @@
             <div class="navbar-nav">
                 <a class="nav-link {{ Route::is('books.index') ? 'active' : '' }}"
                     href="{{ route('books.index') }}">Books List<span class="sr-only">(current)</span></a>
+                <a class="nav-link {{ Route::is('authors.index') ? 'active' : '' }}"
+                    href="{{ route('authors.index') }}">Author<span class="sr-only">(current)</span></a>
             </div>
         </div>
     </nav>

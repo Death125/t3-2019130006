@@ -50,6 +50,7 @@
                         <th>Halaman</th>
                         <th>Kategori</th>
                         <th>Penerbit</th>
+                        <th>Author ID</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -64,6 +65,7 @@
                             <td>{{ $book->halaman }}</td>
                             <td>{{ $book->kategori }}</td>
                             <td>{{ $book->penerbit }}</td>
+                            <td>{{ $book->author_id }}</td>
                         </tr>
                     @empty
                         <tr>

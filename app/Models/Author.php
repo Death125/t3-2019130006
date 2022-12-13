@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Author extends Model
 {
     use HasFactory;
+    protected $guarded = [];
+    public $incrementing = false;
 
     public function books()
     {
