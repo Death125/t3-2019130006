@@ -24,7 +24,7 @@ class BookController extends Controller
      */
     public function create()
     {
-        //
+        return view('books.create');
     }
 
     /**
@@ -35,7 +35,17 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validateData = $request->validate([
+            'id' => 'required|max:13',
+            'judul' => 'required|max:255',
+            'halaman' => 'required|integer|min:10|max:9999',
+            'kategori' => 'required|max:20',
+            'penerbit' => 'required|max:20'
+        ]);
+
+        Book::create($validateData);
+
+        return "<h1>Data Berhasil Ditambahkan</h1>";
     }
 
     /**
