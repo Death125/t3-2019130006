@@ -73,8 +73,6 @@
                                         <p>Author tidak memiliki buku</p>
                                     @endif
 
-
-
                                     @foreach ($author->books as $book)
                                         @if ($book->halaman > 10)
                                             <li>{{ $book->judul }}</li>

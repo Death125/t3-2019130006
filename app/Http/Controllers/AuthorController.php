@@ -14,7 +14,6 @@ class AuthorController extends Controller
      */
     public function index()
     {
-        //$authors = Author::all();
         $allAuthors = Author::withCount('books')->get();
 
         return view('authors.index', compact('allAuthors'));
@@ -27,7 +26,7 @@ class AuthorController extends Controller
      */
     public function create()
     {
-        //
+        return view('authors.create');
     }
 
     /**
@@ -38,7 +37,18 @@ class AuthorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validateData = $request->validate([
+            'id' => 'required|unique:authors,id|max:13',
+            'nama' => 'required|max:255',
+            'umur' => 'required|integer|min:20|max:90',
+            'kota' => 'required|max:255',
+            'negara' => 'required|max:255'
+        ]);
+
+        Author::create($validateData);
+
+        $request->session()->flash('success', "Successfully adding new author named {$validateData['nama']}!");
+        return redirect()->route('authors.index');
     }
 
     /**
@@ -49,7 +59,8 @@ class AuthorController extends Controller
      */
     public function show(Author $author)
     {
-        //
+        $allAuthors = Author::withCount('books')->get();
+        return view('authors.show', compact('author', 'allAuthors'));
     }
 
     /**
@@ -60,7 +71,7 @@ class AuthorController extends Controller
      */
     public function edit(Author $author)
     {
-        //
+        return view('authors.edit', compact('author'));
     }
 
     /**
@@ -72,7 +83,19 @@ class AuthorController extends Controller
      */
     public function update(Request $request, Author $author)
     {
-        //
+        $validateData = $request->validate([
+            'id' => 'required|max:13',
+            'nama' => 'required|max:255',
+            'umur' => 'required|integer|min:20|max:90',
+            'kota' => 'required|max:255',
+            'negara' => 'required|max:255'
+        ]);
+
+        $author->update($validateData);
+
+        $request->session()
+            ->flash('success', "Successfully updating Author named{$validateData['nama']}!");
+        return redirect()->route('authors.index');
     }
 
     /**
@@ -83,6 +106,10 @@ class AuthorController extends Controller
      */
     public function destroy(Author $author)
     {
-        //
+        $author->delete();
+        return redirect()->route('authors.index')->with(
+            'success',
+            "Successfully deleting author named {$author['nama']}!"
+        );
     }
 }

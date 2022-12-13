@@ -69,7 +69,6 @@ class BookController extends Controller
      */
     public function edit(Book $book)
     {
-        //Memunculkan form edit data
         return view('books.edit', compact('book'));
     }
 
