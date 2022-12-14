@@ -20,12 +20,12 @@
     <div class="container text-center">
         <div>
             <p class="judul"><b>Book store</b></p>
+            <img src="{{ asset('images/bookStore.jpg') }}" width="60%" height="70%">
             <br>
-            <p class="teks text-wrap">we provide various kinds of books that you can read, and you can see the author who
-                made the
-                book. Enjoy !!
+            <br>
+            <p class="teks text-wrap">We provide various kinds of books with different genres that you can read, starting
+                from romance, horror, adventure and many others. You can also see the author who created the book. Enjoy !!
             </p>
-            <img src="{{ asset('images/bookStore.jpg') }}" width="80%" height="80%">
         </div>
     </div>
 @endsection
