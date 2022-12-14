@@ -14,7 +14,7 @@
                     <div class="btn-group" role="group">
                         <a href="{{ route('authors.edit', $author->id) }}" class="btn btn-primary ml-3">Edit</a>
                         <form action="{{ route('authors.destroy', $author->id) }}" method="POST">
-                            <button type="submit" class="btn btn-danger ml-3">Delete</button>
+                            <button type="submit" class="btn btn-danger ml-3 confirmation">Delete</button>
                             @method('DELETE')
                             @csrf
                         </form>
@@ -58,3 +58,15 @@
     </div>
 
 @endsection
+
+@push('js_after')
+    <script type="text/javascript">
+        var elems = document.getElementsByClassName('confirmation');
+        var confirmIt = function(e) {
+            if (!confirm('Are you sure want to delete this author?')) e.preventDefault();
+        };
+        for (var i = 0, l = elems.length; i < l; i++) {
+            elems[i].addEventListener('click', confirmIt, false);
+        }
+    </script>
+@endpush

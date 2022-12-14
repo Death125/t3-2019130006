@@ -50,6 +50,7 @@
                         <th>Halaman</th>
                         <th>Kategori</th>
                         <th>Penerbit</th>
+                        <th>Author</th>
                         <th>Author ID</th>
                     </tr>
                 </thead>
@@ -65,6 +66,11 @@
                             <td>{{ $book->halaman }}</td>
                             <td>{{ $book->kategori }}</td>
                             <td>{{ $book->penerbit }}</td>
+                            @foreach ($authors as $author)
+                                @if ($book->author_id == $author->id)
+                                    <td>{{ $author->nama }}</td>
+                                @endif
+                            @endforeach
                             <td>{{ $book->author_id }}</td>
                         </tr>
                     @empty

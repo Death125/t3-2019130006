@@ -76,12 +76,14 @@
                     <select name="author_id" id="dropdown-Size">
                         <option disabled selected>Pilih Author Id</option>
 
-                        @forelse ($author as $authors)
-                            <option value="{{ old($authors->id) }}">
-                                {{ $authors->id }}
-                            </option>
-                        @empty
-                        @endforelse
+                        @foreach ($author as $authors)
+                            @if (old('author_id') == $authors->id)
+                                <option value="{{ $authors->id }}" selected>{{ $authors->id }} : {{ $authors->nama }}
+                                </option>
+                            @else
+                                <option value="{{ $authors->id }}">{{ $authors->id }} : {{ $authors->nama }}</option>
+                            @endif
+                        @endforeach
 
                     </select>
 
