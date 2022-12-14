@@ -79,7 +79,7 @@
                         <option disabled selected>Pilih Author Id</option>
 
                         @foreach ($author as $authors)
-                            @if (old('author_id') ?? $book->author_id == $authors->id)
+                            @if (old($book->author_id) ?? $book->author_id == $authors->id)
                                 <option value="{{ $authors->id }}" selected>{{ $authors->id }} :
                                     {{ $authors->nama }}
                                 </option>
