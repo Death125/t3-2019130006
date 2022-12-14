@@ -19,6 +19,8 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
+                <a class="nav-link {{ Route::is('home') ? 'active' : '' }}" href="{{ route('home') }}">Home<span
+                        class="sr-only">(current)</span></a>
                 <a class="nav-link {{ Route::is('books.index') ? 'active' : '' }}"
                     href="{{ route('books.index') }}">Books List<span class="sr-only">(current)</span></a>
                 <a class="nav-link {{ Route::is('authors.index') ? 'active' : '' }}"
@@ -31,8 +33,18 @@
     <div class="col p-4"> @yield('content') </div>
     {{-- Content END --}}
 
+    <div class="text-center text-white p-3 fixed-bottom bg-primary">
+        © 2022 Copyright:
+        <a class="text-white" href="#">Viki Fernando</a>
 
-    {{-- Stack untuk menyisipkan element biasanya untuk script atau css --}}
+        <div class="row m-0 p-0">
+            <div class="col">
+                <b> <a class="text-dark" style="border-bottom:1px solid blue" href="{{ url('/') }}">Home</a></b>
+            </div>
+        </div>
+    </div>
+    </footer>
+
     <script src="{{ asset('js/app.js') }}"></script> @stack('js_after')
 </body>
 
